@@ -37,7 +37,7 @@ const AuthLayout = ({ children, slogan }) => {
                 </Stack>
                 <Box
                     sx={{
-                        width: "70%"
+                        width: "75%"
                     }}>
                     {children}
                 </Box>

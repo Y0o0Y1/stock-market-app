@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import LoginForm from './../components/login-form/LoginForm';
+import LoginForm from './../components/LoginForm';
 
 const Login = () => {
     return (

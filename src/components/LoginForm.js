@@ -1,8 +1,12 @@
-import { Button, Checkbox, Stack, TextField, Typography } from '@mui/material'
-import React from 'react'
-import AuthLayout from '../../layouts/AuthLayout'
-import "./LoginForm.css"
+import { Button, Checkbox, Stack, TextField, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthLayout from './../layouts/AuthLayout';
 const LoginForm = () => {
+    const navigate = useNavigate()
+    const navigateToSignupForm = () => {
+        navigate('/sign-up')
+    }
     return (
         <AuthLayout
             slogan={<>Purchase Today <br /> For Secured Tomorrow</>}
@@ -42,10 +46,15 @@ const LoginForm = () => {
                 <Button color='primary' variant="contained" fullWidth>Sign In</Button>
                 <Typography>
                     I`m a new member
-                    <Typography component="span" color={"primary"} sx={{
-                        cursor: "pointer",
-                        marginLeft: "3px"
-                    }} >
+                    <Typography
+                        component="span"
+                        color={"primary"}
+                        onClick={navigateToSignupForm}
+                        sx={{
+                            cursor: "pointer",
+                            marginLeft: "3px"
+                        }}
+                    >
                         Sign up
                     </Typography>
                 </Typography>
