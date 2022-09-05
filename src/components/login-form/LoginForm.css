@@ -1,0 +1,19 @@
+.logo-wrapper {
+    max-width: 320px;
+    max-height: 97px;
+}
+
+.login-form-wrapper.MuiPaper-root {
+    height: 875px;
+    width: 450px;
+    border-radius: 16px;
+    padding-top: 10px;
+}
+
+.slogan.MuiTypography-root {
+    font-family: Urbanist;
+    color: #0996C7;
+    font-weight: medium;
+    text-align: left;
+    font-size: 32px;
+}

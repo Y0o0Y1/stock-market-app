@@ -1,11 +1,10 @@
+import { Container } from '@mui/system';
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { pages } from './routes/index';
-
+import "./styles/styles.css";
 function App() {
-
-
   const renderRoutes = () => {
     return pages.map((page) => {
       return <Route
@@ -21,12 +20,13 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <BrowserRouter>
-        <Routes>
-          {renderRoutes()}
-
-        </Routes>
-      </BrowserRouter>
+      <Container>
+        <BrowserRouter>
+          <Routes>
+            {renderRoutes()}
+          </Routes>
+        </BrowserRouter>
+      </Container>
     </div>
   );
 }
