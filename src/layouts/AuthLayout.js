@@ -12,8 +12,9 @@ const AuthLayout = ({ children, slogan }) => {
             <Stack
                 direction={"column"}
                 alignItems={"center"}
-                justifyContent={"center"}
-                spacing={5}
+                justifyContent={"space-evenly"}
+                spacing={2}
+                padding={2}
                 sx={{
                     height: "100%"
                 }}
@@ -21,24 +22,25 @@ const AuthLayout = ({ children, slogan }) => {
                 <Stack
                     direction={"column"}
                     spacing={2}
+                    justifySelf={"flex-start"}
                 >
                     <Box className="logo-wrapper">
                         <img
                             src={logo}
                             alt={"logo"}
-                            loading="lazy"
                             width={280}
                             height={80}
                         />
                     </Box>
-                    <Typography className="slogan">
+                    <Typography className="slogan" color="primary">
                         {slogan}
                     </Typography>
                 </Stack>
                 <Box
                     sx={{
-                        width: "75%"
-                    }}>
+                        width:"80%"
+                    }}
+                >
                     {children}
                 </Box>
             </Stack>

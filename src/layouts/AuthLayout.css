@@ -11,10 +11,7 @@
 }
 
 .slogan.MuiTypography-root {
-    font-family: Urbanist;
-    color: #0996C7;
     font-size: 24px;
-    line-height: 24px;
-    font-weight: medium;
-    text-align: left;
+    line-height: 25px;
+    font-weight: 600;
 }

@@ -20,10 +20,17 @@ const theme = createTheme({
     typography: {
         fontFamily: "Urbanist,sans-serif",
     },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: "capitalize"
+                }
+            }
+        }
+    }
 })
 root.render(
-
-
     <HelmetProvider>
         <ThemeProvider theme={theme}>
             <App />
