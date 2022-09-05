@@ -1,22 +1,12 @@
-import { Box, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Button, Checkbox, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
-import logo from "../../assets/nasdaq-logo.png"
+import AuthLayout from '../../layouts/AuthLayout'
 import "./LoginForm.css"
 const LoginForm = () => {
     return (
-        <Paper
-            elevation={6}
-            className={"login-form-wrapper"}
-            component={Stack}
-            direction={"column"}
-            alignItems={"center"}
-            spacing={4}
-
-            sx={{
-                height: "100%"
-            }}
+        <AuthLayout
+            slogan={<>Purchase Today <br /> For Secured Tomorrow</>}
         >
-
             <Stack
                 direction={"column"}
                 justifyContent={"center"}
@@ -26,26 +16,41 @@ const LoginForm = () => {
                     height: "100%"
                 }}
             >
-                <Box>
-                    <Box className="logo-wrapper">
-                        <img
-                            src={logo}
-                            alt={"logo"}
-                            loading="lazy"
-                            width={320}
-                            height={97}
-                        />
-                    </Box>
-                    <Typography className="slogan">
-                        Purchase today <br /> For secured tomorrow
-                    </Typography>
-                </Box>
-                <TextField variant='outlined' label="Email" fullWidth />
-                <TextField variant='outlined' label="Password" type={"password"} fullWidth />
+                <Stack
+                    direction={"column"}
+                    spacing={2}
+                    sx={{
+                        width: "100%"
+                    }}
+                >
+                    <TextField variant='outlined' label="Email" fullWidth />
+                    <TextField variant='outlined' label="Password" type={"password"} fullWidth />
+                    <Stack
+                        direction={"row"}
+                        alignItems={"center"}
+                        spacing={1}
+                    >
+                        <Checkbox
+                            label={"Remember Me"}
+                            sx={{
+                                margin: 0,
+                                padding: 0
+                            }} />
+                        <Typography component={"span"}>Remember Me</Typography>
+                    </Stack>
+                </Stack>
                 <Button color='primary' variant="contained" fullWidth>Sign In</Button>
-                
+                <Typography>
+                    I`m a new member
+                    <Typography component="span" color={"primary"} sx={{
+                        cursor: "pointer",
+                        marginLeft: "3px"
+                    }} >
+                        Sign up
+                    </Typography>
+                </Typography>
             </Stack>
-        </Paper>
+        </AuthLayout>
     )
 }
 

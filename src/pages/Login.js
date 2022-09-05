@@ -17,8 +17,7 @@ const Login = () => {
                         Lottie Space
                     </Box>
                 </Grid> */}
-                <Grid item xs={12} sm={12} md={6} sx={{
-                }}>
+                <Grid item xs={6} sm={6} md={6} >
                     <LoginForm />
                 </Grid>
             </Grid>

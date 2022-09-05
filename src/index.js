@@ -5,12 +5,29 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#0996C7',
+        },
+        secondary: {
+            main: '#edf2ff',
+        },
+    },
+    typography: {
+        fontFamily: "Urbanist,sans-serif",
+    },
+})
 root.render(
-    <HelmetProvider>
 
-        <App />
+
+    <HelmetProvider>
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
     </HelmetProvider>
 );
 
