@@ -25,7 +25,7 @@ Api.interceptors.response.use(
         console.log(response)
     },
     (error) => {
-        return Promise.reject("errorrr", error);
+        return Promise.reject("This Email is Already Registered ", error);
     }
 );
 

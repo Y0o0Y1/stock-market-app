@@ -87,7 +87,6 @@ const SignUpForm = () => {
                     >
                         <Grid container columnSpacing={2}>
                             <Grid item xs={6}>
-
                                 <ControlledInput fieldName={"firstName"} label={"First Name"} type={"text"} control={control} />
                             </Grid>
                             <Grid item xs={6}>

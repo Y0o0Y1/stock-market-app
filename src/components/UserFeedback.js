@@ -1,9 +1,9 @@
-import { Alert, Backdrop, CircularProgress, Snackbar } from '@mui/material';
+import { Alert, Backdrop, CircularProgress, Snackbar, Typography } from '@mui/material';
 import React from 'react';
 import { useActions, useAppState } from '../overmind';
 
 const UserFeedback = () => {
-    const { isLoading, success, error } = useAppState()
+    const { isLoading, success, error, successMessage, errorMessage } = useAppState()
     const { removeFeedbackIndicator } = useActions().user
 
 
@@ -21,14 +21,20 @@ const UserFeedback = () => {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    This is a success message!
+            <Snackbar open={success} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%', padding: "18px" }}>
+                    <Typography>
+
+                        {successMessage}
+                    </Typography>
                 </Alert>
             </Snackbar>
-            <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
-                <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    This is an error message!
+            <Snackbar open={error} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+                <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '100%', padding: "18px" }}>
+                    <Typography>
+
+                        {errorMessage}
+                    </Typography>
                 </Alert>
             </Snackbar>
         </>

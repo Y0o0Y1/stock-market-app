@@ -10,9 +10,11 @@ export const register = async ({ state, effects }, data) => {
         .then((response) => {
             state.isLoading = false
             state.success = true
+            state.successMessage = "User Registered Successfully"
             console.log(response)
         }).catch((error) => {
-            console.log(error)
+            console.log({ error })
+            state.errorMessage = error
             state.isLoading = false
             state.error = true
         })
@@ -37,6 +39,7 @@ export const removeFeedbackIndicator = ({ state }) => {
     state.error = false
     state.success = false
 }
+
 export const loadPosts = async ({ state, effects }, value) => {
     console.log({ value })
     console.log({ effects, state })
