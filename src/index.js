@@ -1,11 +1,20 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
 
+//React Helmet
+import { HelmetProvider } from 'react-helmet-async';
+
+//Overmind Imports
+import { createOvermind } from 'overmind';
+import { Provider } from 'overmind-react';
+import { config } from './overmind';
+
+//Styles
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import './index.css';
+
+//Main App Component
+import App from './App';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
@@ -30,15 +39,17 @@ const theme = createTheme({
         }
     }
 })
+
+const overmind = createOvermind(config, { logProxies: false })
+
 root.render(
-    <HelmetProvider>
-        <ThemeProvider theme={theme}>
-            <App />
-        </ThemeProvider>
-    </HelmetProvider>
+    <Provider value={overmind}>
+        <HelmetProvider>
+            <ThemeProvider theme={theme}>
+                <App />
+            </ThemeProvider>
+        </HelmetProvider>
+    </Provider>
+
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

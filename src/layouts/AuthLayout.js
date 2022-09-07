@@ -6,7 +6,7 @@ import "./AuthLayout.css"
 const AuthLayout = ({ children, slogan }) => {
     return (
         <Paper
-            elevation={10}
+            elevation={5}
             className={"form-wrapper"}
         >
             <Stack
