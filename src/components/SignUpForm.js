@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Checkbox, FormHelperText, Stack, Typography } from '@mui/material';
+import { Button, Checkbox, FormHelperText, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -18,10 +18,20 @@ const SignUpForm = () => {
     //form state & validation schema
     const registrationSchema = yup
         .object({
-            fullName: yup
+            firstName: yup
                 .string()
                 .required("This Field is required")
-                .min(5, "Full Name must be greater than 5 characters")
+                .min(4, "First Name must be greater than 4 characters")
+                .max(100, "Full Name can`t be greater than 100 characters")
+                .trim("This field cannot be empty")
+                .matches(
+                    /^[a-zA-Z\u0600-\u06FF]+.?/,
+                    ("This field can`t contain only numbers")
+                ),
+            lastName: yup
+                .string()
+                .required("This Field is required")
+                .min(4, "Last Name must be greater than 4 characters")
                 .max(100, "Full Name can`t be greater than 100 characters")
                 .trim("This field cannot be empty")
                 .matches(
@@ -45,7 +55,7 @@ const SignUpForm = () => {
         })
         .required();
 
-    const { handleSubmit, control,  } = useForm({
+    const { handleSubmit, control, } = useForm({
         mode: "all",
         reValidateMode: "onBlur",
         resolver: yupResolver(registrationSchema),
@@ -75,7 +85,16 @@ const SignUpForm = () => {
                             width: "100%"
                         }}
                     >
-                        <ControlledInput fieldName={"fullName"} label={"Full Name"} type={"text"} control={control} />
+                        <Grid container columnSpacing={2}>
+                            <Grid item xs={6}>
+
+                                <ControlledInput fieldName={"firstName"} label={"First Name"} type={"text"} control={control} />
+                            </Grid>
+                            <Grid item xs={6}>
+
+                                <ControlledInput fieldName={"lastName"} label={"Last Name"} type={"text"} control={control} />
+                            </Grid>
+                        </Grid>
                         <ControlledInput fieldName={"email"} label={"Email"} type={"email"} control={control} />
                         <ControlledInput fieldName={"password"} label={"Password"} type={"password"} control={control} />
                         <Controller

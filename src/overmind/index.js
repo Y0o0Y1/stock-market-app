@@ -6,11 +6,12 @@ import {
 import { namespaced } from 'overmind/config'
 import * as tickers from "./tickers"
 import * as user from "./user"
-
 export const config = namespaced(
     {
         user,
-        tickers
+        tickers,
+        isLoading: false,
+        
     }
 )
 

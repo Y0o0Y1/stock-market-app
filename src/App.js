@@ -1,13 +1,11 @@
-import { Backdrop, CircularProgress } from '@mui/material';
 import { Container } from '@mui/system';
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { useAppState } from './overmind';
+import UserFeedback from './components/UserFeedback';
 import { pages } from './routes/index';
 import "./styles/styles.css";
 function App() {
-  const { isLoading } = useAppState().user
 
   const renderRoutes = () => {
     return pages.map((page) => {
@@ -36,12 +34,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Container>
-      <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={isLoading}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <UserFeedback />
     </div>
   );
 }
