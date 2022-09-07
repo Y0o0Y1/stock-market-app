@@ -2,10 +2,18 @@ import { Button, Checkbox, Stack, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthLayout from './../layouts/AuthLayout';
+import { useActions } from './../overmind/index';
 const LoginForm = () => {
     const navigate = useNavigate()
+    const { logIn, loadPosts } = useActions().user
+
     const navigateToSignupForm = () => {
         navigate('/sign-up')
+    }
+
+    const login = () => {
+        logIn()
+        loadPosts()
     }
     return (
         <AuthLayout
@@ -43,7 +51,7 @@ const LoginForm = () => {
                         <Typography component={"span"}>Remember Me</Typography>
                     </Stack>
                 </Stack>
-                <Button color='primary' variant="contained" fullWidth>Sign In</Button>
+                <Button color='primary' variant="contained" fullWidth onClick={login}>Sign In</Button>
                 <Typography>
                     I`m a new member
                     <Typography
