@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useAppState } from "../overmind";
 import LoginForm from './../components/LoginForm';
@@ -15,17 +14,9 @@ const Login = () => {
 
     return (
         <>
-            <Grid
-                container
-                className="login-page-wrapper"
-                justifyContent={"center"}
-                alignItems={"center"}
-                spacing={2}
-            >
-                <Grid item xs={6} sm={6} md={6} >
-                    <LoginForm />
-                </Grid>
-            </Grid>
+
+            <LoginForm />
+
         </>
     )
 }

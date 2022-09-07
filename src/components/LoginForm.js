@@ -5,7 +5,7 @@ import AuthLayout from './../layouts/AuthLayout';
 import { useActions } from './../overmind/index';
 const LoginForm = () => {
     const navigate = useNavigate()
-    const { logIn, loadPosts } = useActions().user
+    const { logIn } = useActions().user
 
     const navigateToSignupForm = () => {
         navigate('/sign-up')
@@ -13,7 +13,6 @@ const LoginForm = () => {
 
     const login = () => {
         logIn()
-        loadPosts()
     }
     return (
         <AuthLayout
