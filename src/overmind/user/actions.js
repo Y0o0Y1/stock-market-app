@@ -10,24 +10,31 @@ export const register = async ({ state, effects }, data) => {
         .then((response) => {
             state.isLoading = false
             state.success = true
+            state.user.redirect = true
             state.successMessage = "User Registered Successfully"
             console.log(response)
+            return response
         }).catch((error) => {
-            console.log({ error })
+            console.log({ errorStatus: error })
             state.errorMessage = error
             state.isLoading = false
             state.error = true
+            return error
         })
 
 }
 
-export const logIn = async ({ state, effects, actions }) => {
-    state.user.isLoggedin = true
+export const logIn = async ({ state, effects }, userData) => {
+    state.isLoading = true
+    await effects.user.api.logIn(userData).then((response) => {
+        state.user.isLoggedin = true
+        state.isLoading = false
+        console.log(response)
+    }).catch((error) => {
+        console.log(error)
+    })
     console.log({
         message: "From Login Action",
-        state,
-        effects,
-        actions
     })
 }
 
@@ -35,6 +42,10 @@ export const logIn = async ({ state, effects, actions }) => {
 export const setError = ({ state }) => {
     state.error = true
 }
+export const removeRedirection = ({ state }) => {
+    state.user.redirect = false
+}
+
 export const removeFeedbackIndicator = ({ state }) => {
     state.error = false
     state.success = false
@@ -47,3 +58,11 @@ export const loadPosts = async ({ state, effects }, value) => {
         console.log(response.data)
     })
 }
+
+// export const onInitializeOvermind = async ({ state, localStorage }, overmind) => {
+//     overmind.addMutationListener((mutation) => {
+//         if (mutation.path.indexOf('user') === 0)
+//             localStorage.set('user', state.user)
+
+//     })
+// }

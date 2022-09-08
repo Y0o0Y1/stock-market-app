@@ -23,7 +23,7 @@ export const pages = [
     },
     {
         name: "Log In",
-        path: "/login",
+        path: "/",
         element: <Login />,
         id: "3"
     },

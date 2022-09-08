@@ -5,9 +5,6 @@ import { useActions, useAppState } from '../overmind';
 const UserFeedback = () => {
     const { isLoading, success, error, successMessage, errorMessage } = useAppState()
     const { removeFeedbackIndicator } = useActions().user
-
-
-
     const handleClose = () => {
         console.log("Handling Close State")
         removeFeedbackIndicator()
@@ -16,10 +13,10 @@ const UserFeedback = () => {
     return (
         <>
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{ color: '#0996C7', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={isLoading}
             >
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit" thickness={5.5} />
             </Backdrop>
             <Snackbar open={success} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%', padding: "18px" }}>

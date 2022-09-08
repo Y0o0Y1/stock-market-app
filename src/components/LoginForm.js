@@ -1,9 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Checkbox, Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { useActions, useAppState } from '../overmind';
 import AuthLayout from './../layouts/AuthLayout';
 import ControlledInput from './ControlledInput';
 const LoginForm = () => {
@@ -11,21 +12,25 @@ const LoginForm = () => {
     const navigateToSignupForm = () => {
         navigate('/sign-up')
     }
-
-    // const { logIn } = useActions().user
-    const loginSchema = yup
-        .object({
-            email: yup
-                .string()
-                .email("Please enter a valid Email")
-                .required("Please Enter Your Email")
-                .trim("This field can`t be empty"),
-            password: yup
-                .string("")
-                .required("Please Enter Your Password")
-                .trim("This field can`t be empty"),
-        })
-        .required();
+    const redirect = useAppState((state) => {
+        if (state.user.redirect)
+            return state.user.redirect
+    })
+    const isLoggedin = useAppState((state) => {
+        return state.user.isLoggedin
+    })
+    const { removeRedirection, logIn } = useActions().user
+    const loginSchema = yup.object({
+        email: yup
+            .string()
+            .email("Please enter a valid Email")
+            .required("Please Enter Your Email")
+            .trim("This field can`t be empty"),
+        password: yup
+            .string("")
+            .required("Please Enter Your Password")
+            .trim("This field can`t be empty"),
+    }).required();
 
     const { handleSubmit, control, } = useForm({
         mode: "all",
@@ -33,12 +38,16 @@ const LoginForm = () => {
         resolver: yupResolver(loginSchema),
     });
 
-
-
     const onSubmit = (data) => {
-        console.log(data)
-        // logIn()
+        logIn(data)
     }
+    useEffect(() => {
+        if (redirect)
+            removeRedirection()
+        if (isLoggedin)
+            navigate("/explore")
+    }, [])
+
     return (
         <AuthLayout
             slogan={<>Purchase Today <br /> For Secured Tomorrow</>}

@@ -7,7 +7,9 @@ export const api = {
     },
     registerUser(userData) {
         console.log(userData)
-        return Api.post("/user/create", userData)
-
+        return Api.post("/register", userData)
+    },
+    logIn(userData) {
+        return Api.post("/login", userData)
     }
 }

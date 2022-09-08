@@ -1,11 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Checkbox, FormHelperText, Grid, Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from "yup";
 import AuthLayout from '../layouts/AuthLayout';
-import { useActions } from './../overmind/index';
+import { useActions, useAppState } from './../overmind/index';
 import ControlledInput from './ControlledInput';
 
 const SignUpForm = () => {
@@ -13,48 +13,47 @@ const SignUpForm = () => {
     //navigation
     const navigate = useNavigate()
     const navigateToLogin = () => {
-        navigate('/login')
+        navigate('/')
     }
+    const { redirect } = useAppState().user
+
     //form state & validation schema
-    const registrationSchema = yup
-        .object({
-            firstName: yup
-                .string()
-                .required("This Field is required")
-                .min(4, "First Name must be greater than 4 characters")
-                .max(100, "Full Name can`t be greater than 100 characters")
-                .trim("This field cannot be empty")
-                .matches(
-                    /^[a-zA-Z\u0600-\u06FF]+.?/,
-                    ("This field can`t contain only numbers")
-                ),
-            lastName: yup
-                .string()
-                .required("This Field is required")
-                .min(4, "Last Name must be greater than 4 characters")
-                .max(100, "Full Name can`t be greater than 100 characters")
-                .trim("This field cannot be empty")
-                .matches(
-                    /^[a-zA-Z\u0600-\u06FF]+.?/,
-                    ("This field can`t contain only numbers")
-                ),
-            email: yup
-                .string()
-                .email("Please enter a valid email")
-                .required("This Field Is required")
-                .typeError(("validations.required_input")),
-            password: yup
-                .string("")
-                .required("Please enter a password")
-                .min(6, "Your password must be more than 6 characters")
-                .max(100, "Password can`t be greater than 100 characters"),
-            terms: yup
-                .bool("This Field Is required")
-                .oneOf([true], 'Field must be checked')
-
-        })
+    const registrationSchema = yup.object({
+        firstName: yup
+            .string()
+            .required("This Field is required")
+            .min(4, "First Name must be greater than 4 characters")
+            .max(100, "Full Name can`t be greater than 100 characters")
+            .trim("This field cannot be empty")
+            .matches(
+                /^[a-zA-Z\u0600-\u06FF]+.?/,
+                ("This field can`t contain only numbers")
+            ),
+        lastName: yup
+            .string()
+            .required("This Field is required")
+            .min(4, "Last Name must be greater than 4 characters")
+            .max(100, "Full Name can`t be greater than 100 characters")
+            .trim("This field cannot be empty")
+            .matches(
+                /^[a-zA-Z\u0600-\u06FF]+.?/,
+                ("This field can`t contain only numbers")
+            ),
+        email: yup
+            .string()
+            .email("Please enter a valid email")
+            .required("This Field Is required")
+            .typeError(("validations.required_input")),
+        password: yup
+            .string("")
+            .required("Please enter a password")
+            .min(6, "Your password must be more than 6 characters")
+            .max(100, "Password can`t be greater than 100 characters"),
+        terms: yup
+            .bool("This Field Is required")
+            .oneOf([true], 'Field must be checked')
+    })
         .required();
-
     const { handleSubmit, control, } = useForm({
         mode: "all",
         reValidateMode: "onBlur",
@@ -63,8 +62,11 @@ const SignUpForm = () => {
     const onSubmit = (data) => {
         userActions.register(data)
     }
+    useEffect(() => {
+        if (redirect)
+            navigate("/")
+    }, [redirect])
     return (
-
         <AuthLayout
             slogan={<>Move forward <br />to be financially constant</ >}
         >
@@ -90,7 +92,6 @@ const SignUpForm = () => {
                                 <ControlledInput fieldName={"firstName"} label={"First Name"} type={"text"} control={control} />
                             </Grid>
                             <Grid item xs={6}>
-
                                 <ControlledInput fieldName={"lastName"} label={"Last Name"} type={"text"} control={control} />
                             </Grid>
                         </Grid>
