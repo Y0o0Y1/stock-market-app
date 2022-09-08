@@ -1,4 +1,4 @@
-import { Container } from '@mui/system';
+import { Box } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -23,10 +23,12 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <Container maxWidth={"sm"} sx={{
+      <Box sx={{
         display: "flex",
         justifyContent: "center",
+        justifyItems: "center",
         alignItems: "center",
+        margin: "0px 16px 0px 16px",
         height: "100%"
       }}>
         <BrowserRouter>
@@ -34,7 +36,7 @@ function App() {
             {renderRoutes()}
           </Routes>
         </BrowserRouter>
-      </Container>
+      </Box>
       <UserFeedback />
     </div>
   );

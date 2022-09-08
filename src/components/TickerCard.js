@@ -1,8 +1,11 @@
-import { Chip, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Grid, Paper, Stack, Typography } from '@mui/material'
+import { Box } from '@mui/system'
+import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react'
 import React, { useState } from 'react'
 
-const TickerCard = ({ ticker, active, name, market, currency_name, last_updated_utc }) => {
-
+const TickerCard = ({ ticker, active, name, currency_name, last_updated_utc }) => {
+    const date = { last_updated_utc }
+    console.log(date)
     const [hover, setHover] = useState(false)
     const isActive = active
     console.log(isActive)
@@ -10,20 +13,21 @@ const TickerCard = ({ ticker, active, name, market, currency_name, last_updated_
 
         <Grid
             component={Paper}
-            elevation={hover ? 15 : 0}
+            elevation={0}
             container
-            padding={2}
+            padding={3}
             justifyContent={"space-between"}
             alignItems={"flex-start"}
-            rowSpacing={2}
+            rowSpacing={0}
             sx={{
-                maxWidth: "420px",
+                width: "320px",
                 borderRadius: "16px",
-                height: "220px",
+                height: "auto",
                 alignItems: "center",
-                border: "1px solid #0996C7",
+                border: "1px solid rgba(0, 0, 0, 0.1);",
                 cursor: "pointer",
-                transform: `${hover && "scale(1.2)"}`,
+                boxShadow: `${hover && "0px 0px 12px 0px rgba(0, 0, 0, 0.12);"}`,
+                transform: `${hover && "scale(1.1)"}`,
                 transition: " all 0.3s ease-in-out"
             }}
             onMouseOver={() => setHover(true)}
@@ -31,29 +35,47 @@ const TickerCard = ({ ticker, active, name, market, currency_name, last_updated_
         >
             <Grid item xs={12}>
                 <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
-                    <Typography color="primary" variant='h5'>
+                    <Typography color="black" sx={{
+                        fontSize: "18px"
+                    }}>
                         {ticker}
+                        <Typography color="primary" sx={{
+                            fontSize: "16px"
+                        }}>
+                            {name}
+                        </Typography>
+
                     </Typography>
-                    <Chip label={currency_name} variant={"outlined"} color={"primary"} />
                 </Stack>
+
             </Grid>
             <Grid item xs={12}>
-                <Typography color="primary">
-                    {name}
-                </Typography>
+                <Stack direction={"row"} justifyContent={"space-between"}>
+                    <Stack direction={"row"} alignItems={"center"} spacing={0.5}>
+                        <CurrencyCircleDollar size={20} />
+                        <Box>
+                            <Typography sx={{ fontSize: "14px" }}>
+                                {currency_name}
+                            </Typography>
+                        </Box>
+                    </Stack>
+                    <Stack justifyContent={"flex-end"} direction={"row"} spacing={0.5} alignItems={"center"}>
+                        <ClockClockwise size={20} color={"#adadad"} />
+                        <Typography sx={{
+                            fontSize: "14px",
+                            color: "#adadad"
+                        }}>
+                            02 FEB, 6:03
+                        </Typography>
+                    </Stack>
+                </Stack>
             </Grid>
             <Grid item xs={2}>
                 <Typography>
-                    {market.toUpperCase()}
                 </Typography>
             </Grid>
             <Grid item xs={8}>
-                <Stack justifyContent={"flex-end"} alignItems={"flex-end"}>
-                    <Typography>Last Updated At</Typography>
-                    <Typography>
-                        {last_updated_utc}
-                    </Typography>
-                </Stack>
+
             </Grid>
         </Grid>
     )
