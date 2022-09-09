@@ -3,12 +3,11 @@ import { Box } from '@mui/system'
 import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react'
 import React, { useState } from 'react'
 
-const TickerCard = ({ ticker, active, name, currency_name, last_updated_utc }) => {
-    const date = { last_updated_utc }
-    console.log(date)
+const TickerCard = ({ ticker, name, currency_name }) => {
+    // const date = { last_updated_utc }
+    // console.log(date)
     const [hover, setHover] = useState(false)
-    const isActive = active
-    console.log(isActive)
+
     return (
 
         <Grid
@@ -18,32 +17,38 @@ const TickerCard = ({ ticker, active, name, currency_name, last_updated_utc }) =
             padding={3}
             justifyContent={"space-between"}
             alignItems={"flex-start"}
-            rowSpacing={0}
+            rowSpacing={0.5}
             sx={{
                 width: "320px",
+                maxWidth: "320px",
+                maxHeight: "122px",
                 borderRadius: "16px",
                 height: "auto",
                 alignItems: "center",
                 border: "1px solid rgba(0, 0, 0, 0.1);",
                 cursor: "pointer",
                 boxShadow: `${hover && "0px 0px 12px 0px rgba(0, 0, 0, 0.12);"}`,
-                transform: `${hover && "scale(1.1)"}`,
+                transform: `${hover && "scale(1.130)"}`,
                 transition: " all 0.3s ease-in-out"
             }}
             onMouseOver={() => setHover(true)}
             onMouseOut={() => setHover(false)}
         >
             <Grid item xs={12}>
-                <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+                <Stack direction={"column"} justifyContent={"space-between"} alignItems={"flex-start"} spacing={0.2}>
                     <Typography color="black" sx={{
                         fontSize: "18px"
                     }}>
                         {ticker}
-                        <Typography color="primary" sx={{
-                            fontSize: "16px"
-                        }}>
-                            {name}
-                        </Typography>
+                    </Typography>
+                    <Typography color="primary" sx={{
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        maxWidth: "260px",
+                        textOverflow: "ellipsis",
+                        fontSize: "16px"
+                    }}>
+                        {name}
 
                     </Typography>
                 </Stack>
@@ -69,13 +74,6 @@ const TickerCard = ({ ticker, active, name, currency_name, last_updated_utc }) =
                         </Typography>
                     </Stack>
                 </Stack>
-            </Grid>
-            <Grid item xs={2}>
-                <Typography>
-                </Typography>
-            </Grid>
-            <Grid item xs={8}>
-
             </Grid>
         </Grid>
     )

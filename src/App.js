@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Stack } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
@@ -23,20 +23,14 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <Box sx={{
-        display: "flex",
-        justifyContent: "center",
-        justifyItems: "center",
-        alignItems: "center",
-        margin: "0px 16px 0px 16px",
-        height: "100%"
-      }}>
+      {/* <Header /> */}
+      <Stack justifyContent={"center"} alignItems={"center"} spacing={6} sx={{ height: "100%" }}>
         <BrowserRouter>
           <Routes>
             {renderRoutes()}
           </Routes>
         </BrowserRouter>
-      </Box>
+      </Stack>
       <UserFeedback />
     </div>
   );
