@@ -1,9 +1,12 @@
 import axios from "axios";
+// eslint-disable-next-line no-undef
+const apiToken = process.env.REACT_APP_POLYGON_API_TOKEN
 
+console.log({ apiToken })
 export const Api = axios.create({
     // eslint-disable-next-line no-undef
     baseURL: process.env.REACT_APP_API_TICKER_URL,
-    headers: { "Authorization": "Bearer tqXNNLuS1QlbrRA_psCyZ7yhmq99m4Gb" }
+    headers: { "Authorization": `Bearer ${apiToken}` }
 });
 
 
