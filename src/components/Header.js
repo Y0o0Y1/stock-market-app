@@ -52,7 +52,8 @@ const Header = () => {
         <AppBar variant={"elevation"} sx={{
             backgroundColor: "white",
             borderBottomLeftRadius: "16px",
-            borderBottomRightRadius: "16px"
+            borderBottomRightRadius: "16px",
+            marginBottom:"65px"
         }} >
             <Toolbar>
                 <IconButton

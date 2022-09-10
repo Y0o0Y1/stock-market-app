@@ -47,8 +47,10 @@ export const removeRedirection = ({ state }) => {
 }
 
 export const removeFeedbackIndicator = ({ state }) => {
-    state.error = false
-    state.success = false
+    if (state.error)
+        state.error = false
+    if (state.success)
+        state.success = false
 }
 
 export const loadPosts = async ({ state, effects }, value) => {

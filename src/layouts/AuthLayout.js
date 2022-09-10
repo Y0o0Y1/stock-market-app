@@ -4,6 +4,7 @@ import logo from "../assets/nasdaq-logo.png"
 
 import "./AuthLayout.css"
 const AuthLayout = ({ children, slogan }) => {
+
     return (
         <Paper
             elevation={5}

@@ -103,7 +103,6 @@ const LoginForm = () => {
                     </Typography>
                 </Stack>
             </form>
-
         </AuthLayout >
     )
 }

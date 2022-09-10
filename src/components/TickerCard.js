@@ -1,15 +1,18 @@
-import { Grid, Paper, Stack, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react'
-import React, { useState } from 'react'
+import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TickerCard = ({ ticker, name, currency_name }) => {
+    const navigate = useNavigate()
     // const date = { last_updated_utc }
     // console.log(date)
     const [hover, setHover] = useState(false)
-
+    const navigateToTickerDetails = () => {
+        navigate(`/tickers/${ticker}`)
+    }
     return (
-
         <Grid
             component={Paper}
             elevation={0}
@@ -33,6 +36,7 @@ const TickerCard = ({ ticker, name, currency_name }) => {
             }}
             onMouseOver={() => setHover(true)}
             onMouseOut={() => setHover(false)}
+            onClick={navigateToTickerDetails}
         >
             <Grid item xs={12}>
                 <Stack direction={"column"} justifyContent={"space-between"} alignItems={"flex-start"} spacing={0.2}>

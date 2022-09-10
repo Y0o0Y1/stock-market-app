@@ -16,7 +16,6 @@ const SignUpForm = () => {
         navigate('/')
     }
     const { redirect } = useAppState().user
-
     //form state & validation schema
     const registrationSchema = yup.object({
         firstName: yup
@@ -52,9 +51,9 @@ const SignUpForm = () => {
         terms: yup
             .bool("This Field Is required")
             .oneOf([true], 'Field must be checked')
-    })
-        .required();
-    const { handleSubmit, control, } = useForm({
+    }).required();
+
+    const { handleSubmit, control } = useForm({
         mode: "all",
         reValidateMode: "onBlur",
         resolver: yupResolver(registrationSchema),
