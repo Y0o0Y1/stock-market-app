@@ -2,10 +2,8 @@ import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const TickerCard = ({ ticker, name, currency_name }) => {
-    const navigate = useNavigate()
+const TickerCard = ({ ticker, name, currency_name ,navigate}) => {
     // const date = { last_updated_utc }
     // console.log(date)
     const [hover, setHover] = useState(false)

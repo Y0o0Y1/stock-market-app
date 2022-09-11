@@ -1,8 +1,11 @@
 import { Box, Grid } from '@mui/material';
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TickerCard from '../components/TickerCard';
 import { useActions, useAppState } from './../overmind/index';
 const Explore = () => {
+    const navigate = useNavigate()
+
     const tickers = useAppState().tickers
     const { getTickers } = useActions().tickers
     useEffect(() => {
@@ -28,6 +31,7 @@ const Explore = () => {
                                 ticker={ticker.ticker}
                                 name={ticker.name}
                                 active={ticker.active}
+                                navigate={navigate}
                                 market={ticker.market}
                                 currency_name={ticker.currency_name}
                                 last_updated_utc={"2022-02-09T06:03:09.534Z"}
