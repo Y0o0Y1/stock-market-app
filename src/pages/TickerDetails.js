@@ -7,18 +7,23 @@ import { useActions, useAppState } from './../overmind/index';
 
 const TickerDetails = () => {
     const { ticker_id } = useParams()
-    const { currentTicker } = useAppState().tickers
     const { getTickerDetails } = useActions().tickers
+    const tickers = useAppState().tickers
+
+
     useEffect(async () => {
         await getTickerDetails({ ticker_id })
-        console.log(currentTicker?.name)
     }, [])
+    useEffect(() => {
+        console.log("Current", tickers?.currentTicker)
+
+    }, [tickers])
     return (
         <Grid container spacing={2} justifyContent={"space-between"}>
             <Grid item xs={12} sm={12} md={7} lg={7}>
                 <TickerDetailsCard
-                    name={currentTicker?.name}
-                    ticker={currentTicker?.ticker}
+                    ticker={tickers?.currentTicker}
+
                 />
             </Grid>
             <Grid item xs={12} sm={12} md={5} lg={3}>

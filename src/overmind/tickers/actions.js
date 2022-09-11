@@ -14,3 +14,11 @@ export const getTickerDetails = async ({ state, effects }, options) => {
     })
 }
 
+
+export const searchForTicker = async ({ state, effects }, options) => {
+    await effects.tickers.api.searchForTicker(options).then((response) => {
+        console.log(response)
+        state.tickers.data = response.results
+
+    })
+}

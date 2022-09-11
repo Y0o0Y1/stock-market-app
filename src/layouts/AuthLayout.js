@@ -6,46 +6,49 @@ import "./AuthLayout.css"
 const AuthLayout = ({ children, slogan }) => {
 
     return (
-        <Paper
-            elevation={5}
-            className={"form-wrapper"}
-        >
-            <Stack
-                direction={"column"}
-                alignItems={"center"}
-                justifyContent={"space-evenly"}
-                spacing={2}
-                padding={2}
-                sx={{
-                    height: "100%"
-                }}
+        <Box align={"center"}>
+
+            <Paper
+                elevation={5}
+                className={"form-wrapper"}
             >
                 <Stack
                     direction={"column"}
+                    alignItems={"center"}
+                    justifyContent={"space-evenly"}
                     spacing={2}
-                    justifySelf={"flex-start"}
-                >
-                    <Box className="logo-wrapper">
-                        <img
-                            src={logo}
-                            alt={"logo"}
-                            width={280}
-                            height={80}
-                        />
-                    </Box>
-                    <Typography className="slogan" color="primary">
-                        {slogan}
-                    </Typography>
-                </Stack>
-                <Box
+                    padding={2}
                     sx={{
-                        width:"80%"
+                        height: "100%"
                     }}
                 >
-                    {children}
-                </Box>
-            </Stack>
-        </Paper>
+                    <Stack
+                        direction={"column"}
+                        spacing={2}
+                        justifySelf={"flex-start"}
+                    >
+                        <Box className="logo-wrapper">
+                            <img
+                                src={logo}
+                                alt={"logo"}
+                                width={280}
+                                height={80}
+                            />
+                        </Box>
+                        <Typography className="slogan" color="primary">
+                            {slogan}
+                        </Typography>
+                    </Stack>
+                    <Box
+                        sx={{
+                            width: "80%"
+                        }}
+                    >
+                        {children}
+                    </Box>
+                </Stack>
+            </Paper>
+        </Box>
     )
 }
 
