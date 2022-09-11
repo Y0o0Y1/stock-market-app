@@ -19,6 +19,14 @@ export const ThemeObject = {
                 }
             },
         },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    borderRadius: "16px",
+                }
+
+            },
+        },
         MuiTypography: {
             variants: [
                 {

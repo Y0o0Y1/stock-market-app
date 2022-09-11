@@ -16,7 +16,7 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <Stack spacing={6} sx={{margin:"20px"}}>
+      <Stack spacing={6} sx={{ margin: "0px 30px" }}>
         <Header />
         <BrowserRouter>
           <Routes>

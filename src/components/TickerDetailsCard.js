@@ -1,21 +1,25 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 
+import logo from "../assets/apple-logo.svg";
+
 const description = "Apple designs a wide variety of consumer electronic devices, including smartphones (iPhone), tablets (iPad), PCs (Mac), smartwatches (Apple Watch), AirPods, and TV boxes (Apple TV), among others. The iPhone makes up the majority of Apple's total revenue. In addition, Apple offers its customers a variety of services such as Apple Music, iCloud, Apple Care, Apple TV+, Apple Arcade, Apple Card, and Apple Pay, among others. Apple's products run internally developed software and semiconductors, and the firm is well known for its integration of hardware, software and services. Apple's products are distributed online as well as through company-owned stores and third-party retailers. The company generates roughly 40% of its revenue from the Americas, with the remainder earned internationally."
+
+
 
 const TickerDetailsCard = () => {
     return (
         <Grid
             component={Paper}
-            elevation={5}
             container
             rowSpacing={1}
             justifyContent={"space-between"}
-            alignItems={"flex-start"}
+            alignItems={"center"}
             sx={{
-                padding: "20px 24px",
+                padding: "15px 25px",
                 borderRadius: "16px",
-                width: "auto"
+                width: "100%",
+                height: "auto"
             }}
         >
             <Grid item xs={12}>
@@ -43,7 +47,7 @@ const TickerDetailsCard = () => {
                             (408) 996-1010
                         </Typography>
                     </Box>
-                    <Typography>LOGO</Typography>
+                    <img src={logo} width="50px" height="50px" alt="Logo"/>
                 </Stack>
             </Grid>
         </Grid>

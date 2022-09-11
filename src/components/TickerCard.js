@@ -25,12 +25,11 @@ const TickerCard = ({ ticker, name, currency_name }) => {
                 width: "320px",
                 maxWidth: "320px",
                 maxHeight: "122px",
-                borderRadius: "16px",
                 height: "auto",
                 alignItems: "center",
-                border: "1px solid rgba(0, 0, 0, 0.1);",
+                border: "1px solid rgba(0, 0, 0, 0.1)",
                 cursor: "pointer",
-                boxShadow: `${hover && "0px 0px 12px 0px rgba(0, 0, 0, 0.12);"}`,
+                boxShadow: `${hover && "0px 0px 12px 0px rgba(0, 0, 0, 0.12)"}`,
                 transform: `${hover && "scale(1.130)"}`,
                 transition: " all 0.3s ease-in-out"
             }}
