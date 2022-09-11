@@ -14,31 +14,11 @@ import './index.css';
 
 //Main App Component
 import App from './App';
+import { ThemeObject } from './styles/GlobalTheme';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#0996C7',
-        },
-        secondary: {
-            main: '#edf2ff',
-        },
-    },
-    typography: {
-        fontFamily: "Urbanist,sans-serif",
-    },
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    textTransform: "capitalize"
-                }
-            }
-        }
-    }
-})
+const theme = createTheme(ThemeObject)
 
 const overmind = createOvermind(config, { logProxies: false })
 

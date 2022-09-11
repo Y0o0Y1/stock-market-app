@@ -16,7 +16,7 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <Stack justifyContent={"center"} alignItems={"center"} spacing={6} sx={{ height: "100%" }}>
+      <Stack spacing={6} sx={{margin:"20px"}}>
         <Header />
         <BrowserRouter>
           <Routes>
