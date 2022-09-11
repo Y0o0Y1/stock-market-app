@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppState } from "../overmind";
 import LoginForm from './../components/LoginForm';
 
 
 const Login = () => {
-    const user = useAppState((state) => {
-        console.log(state)
-        return state.user
-    })
+    const navigate = useNavigate()
+    const { isLoggedIn } = useAppState()
     useEffect(() => {
-        console.log("From Login Page", user)
-    }, [user.isLoggedin])
+        if (isLoggedIn)
+            navigate("/explore")
+    }, [isLoggedIn])
 
     return (
         <>
-
             <LoginForm />
-
         </>
     )
 }

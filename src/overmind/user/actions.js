@@ -1,4 +1,4 @@
-import { authenticateUser, removeLoader, setLoader } from './../actions';
+import { removeLoader, setLoader } from './../actions';
 export const register = async ({ state, effects }, data) => {
     const userData = {
         firstName: data.firstName,
@@ -26,7 +26,7 @@ export const logIn = async ({ state, effects }, userData) => {
     setLoader(state)
     await effects.user.api.logIn(userData).then((response) => {
         removeLoader(state)
-        authenticateUser(state)
+        authenticateUser(state, response)
         console.log(response)
     }).catch((error) => {
         console.log(error)
@@ -35,8 +35,19 @@ export const logIn = async ({ state, effects }, userData) => {
         message: "From Login Action",
     })
 }
+const authenticateUser = (state, userData) => {
+    state.user.userData = userData
+    state.isLoggedIn = true
+}
 
+export const logOut = async ({ state }) => {
+    setLoader(state)
+    state.user.userData = null
+    state.isLoggedIn = false
 
+    removeLoader(state)
+
+}
 export const setError = ({ state }) => {
     state.error = true
 }

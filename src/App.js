@@ -18,7 +18,7 @@ function App() {
       <Helmet>
         <title>NASDAQ - Log in or sign up</title>
       </Helmet>
-      <Stack spacing={6} sx={{ margin: "0px 30px" }} align={"center"}>
+      <Stack spacing={6} sx={{ margin: "0px 30px" }} >
         {isLoggedIn &&
           <Header />
         }

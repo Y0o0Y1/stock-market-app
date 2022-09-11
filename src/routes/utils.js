@@ -1,12 +1,21 @@
+import React from 'react';
 import { Route } from 'react-router-dom';
+import ProtectedRoute from '../components/ProtectedRoute';
 import { pages } from './index';
 
 const renderRoutes = () => {
 
     return pages.map((page) => {
-        let elementToRender = page.element
-
-        return <Route path={page.path} element={elementToRender} key={page.id} />
+        console.log("page", page)
+        return <Route
+            path={page.path}
+            element={
+                <ProtectedRoute permission={page.permission}>
+                    {page.component}
+                </ProtectedRoute>
+            }
+            key={page.id}
+        />
     })
 
 }

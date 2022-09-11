@@ -3,7 +3,13 @@ import { styled } from '@mui/material/styles';
 import { MagnifyingGlass } from 'phosphor-react';
 import React from 'react';
 import Logo from "../assets/nasdaq-n-logo.png";
+import { useActions } from './../overmind/index';
 const Header = () => {
+    const { logOut } = useActions().user
+    const logoutUser = () => {
+        logOut()
+        window.location.replace('/')
+    }
     const StyledInputBase = styled(InputBase)(({ theme }) => ({
         color: 'inherit',
         '& .MuiInputBase-input': {
@@ -53,7 +59,7 @@ const Header = () => {
             backgroundColor: "white",
             borderBottomLeftRadius: "16px",
             borderBottomRightRadius: "16px",
-            marginBottom:"65px"
+            marginBottom: "65px"
         }} >
             <Toolbar>
                 <IconButton
@@ -78,7 +84,7 @@ const Header = () => {
                         inputProps={{ 'aria-label': 'search' }}
                     />
                 </Search>
-                <Button color="primary">Logout</Button>
+                <Button color="primary" onClick={logoutUser}>Logout</Button>
             </Toolbar>
         </AppBar >
     )
