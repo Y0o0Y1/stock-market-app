@@ -20,7 +20,9 @@ import { ThemeObject } from './styles/GlobalTheme';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme(ThemeObject)
 
-const overmind = createOvermind(config, { logProxies: false })
+const overmind = createOvermind(config, {
+    logProxies: false, devtools: "http://localhost:3000"
+})
 
 root.render(
     <Provider value={overmind}>

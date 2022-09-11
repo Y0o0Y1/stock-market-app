@@ -4,17 +4,14 @@ export const Api = axios.create({
     baseURL: process.env.REACT_APP_API_USER_URL,
 });
 
-
 Api.defaults.params = {};
 Api.interceptors.request.use(
-
     async (config) => {
         console.log(config)
         return config
     },
     (error) => {
         console.log(error)
-
     }
 );
 
@@ -24,7 +21,7 @@ Api.interceptors.response.use(
         return response
     },
     (error) => {
-        return Promise.reject("This Email is Already Registered ", error);
+        return Promise.reject(error);
     }
 );
 

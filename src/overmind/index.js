@@ -3,16 +3,29 @@ import {
     createEffectsHook,
     createReactionHook, createStateHook
 } from 'overmind-react'
-import { namespaced } from 'overmind/config'
+import { merge, namespaced } from 'overmind/config'
+
+//Overmind Top-level 
+import * as actions from "./actions"
+import * as effects from "./effects"
+import { state } from "./state"
+
+//Overmind Branches
 import * as tickers from "./tickers"
 import * as user from "./user"
-export const config = namespaced(
+
+export const config = merge(
     {
-        user,
-        tickers,
-        isLoading: false,
-        
-    }
+        state,
+        actions,
+        effects
+    },
+    namespaced(
+        {
+            user,
+            tickers,
+        }
+    )
 )
 
 export const useAppState = createStateHook()

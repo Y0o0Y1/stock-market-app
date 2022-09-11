@@ -1,5 +1,5 @@
+import { authenticateUser, removeLoader, setLoader } from './../actions';
 export const register = async ({ state, effects }, data) => {
-    state.isLoading = true
     const userData = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -8,7 +8,6 @@ export const register = async ({ state, effects }, data) => {
     }
     await effects.user.api.registerUser(userData, state)
         .then((response) => {
-            state.isLoading = false
             state.success = true
             state.user.redirect = true
             state.successMessage = "User Registered Successfully"
@@ -17,7 +16,6 @@ export const register = async ({ state, effects }, data) => {
         }).catch((error) => {
             console.log({ errorStatus: error })
             state.errorMessage = error
-            state.isLoading = false
             state.error = true
             return error
         })
@@ -25,10 +23,10 @@ export const register = async ({ state, effects }, data) => {
 }
 
 export const logIn = async ({ state, effects }, userData) => {
-    state.isLoading = true
+    setLoader(state)
     await effects.user.api.logIn(userData).then((response) => {
-        state.user.isLoggedin = true
-        state.isLoading = false
+        removeLoader(state)
+        authenticateUser(state)
         console.log(response)
     }).catch((error) => {
         console.log(error)
@@ -66,5 +64,12 @@ export const loadPosts = async ({ state, effects }, value) => {
 //         if (mutation.path.indexOf('user') === 0)
 //             localStorage.set('user', state.user)
 
+//     })
+// }
+
+// export const onInitializeOvermindUserBranch = async ({ state, localStorage }, overmind) => {
+//     localStorage.set("state", state.user)
+//     overmind?.addMutationListener((mutation) => {
+//         console.log("on init", mutation, state)
 //     })
 // }
