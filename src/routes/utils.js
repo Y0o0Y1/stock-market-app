@@ -4,19 +4,21 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import { pages } from './index';
 
 const renderRoutes = () => {
+    return <>
 
-    return pages.map((page) => {
-        console.log("page", page)
-        return <Route
-            path={page.path}
-            element={
-                <ProtectedRoute permission={page.permission}>
-                    {page.component}
-                </ProtectedRoute>
-            }
-            key={page.id}
-        />
-    })
+        {pages.map((page) => {
+            console.log("page", page)
+            return <Route
+                path={page.path}
+                element={
+                    <ProtectedRoute permission={page.permission}>
+                        {page.element}
+                    </ProtectedRoute>
+                }
+                key={page.id}
+            />
+        })}
+    </>
 
 }
 

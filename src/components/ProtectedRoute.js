@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import { useAppState } from "../overmind";
 
 const ProtectedRoute = ({ permission, children }) => {
@@ -16,6 +17,7 @@ const ProtectedRoute = ({ permission, children }) => {
 
     return pass ? (children)
         : <>
+            <Navigate to="/403" />
             <h1>Permission Required</h1>
         </>
 }
