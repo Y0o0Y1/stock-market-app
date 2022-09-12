@@ -5,7 +5,6 @@ import { pages } from './index';
 
 const renderRoutes = () => {
     return <>
-
         {pages.map((page) => {
             console.log("page", page)
             return <Route

@@ -5,13 +5,13 @@ import TickerCard from '../components/TickerCard';
 import { useActions, useAppState } from './../overmind/index';
 const Explore = () => {
     const navigate = useNavigate()
-
     const tickers = useAppState().tickers
     const { getTickers } = useActions().tickers
     useEffect(() => {
         getTickers({ params: { limit: 50 } })
         console.log("Tickkk", tickers)
     }, [])
+
     return (
         <Grid
             mt={2}
@@ -26,7 +26,6 @@ const Explore = () => {
                 tickers?.data?.map((ticker) => {
                     return <Grid item xs={true} sm={true} md={true} lg={true} xl={true} key={Math.random()} sx={{ alignSelf: "center" }}>
                         <Box>
-
                             <TickerCard
                                 ticker={ticker.ticker}
                                 name={ticker.name}
