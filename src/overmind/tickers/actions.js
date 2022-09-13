@@ -36,7 +36,6 @@ export const getTickerStats = async ({ state, effects }, options) => {
         state.error = true
         state.errorMessage = error.error
         console.log(error)
-
     })
 }
 
@@ -47,6 +46,19 @@ export const searchForTicker = async ({ state, effects }, options) => {
         state.isLoading = false
         state.tickers.tickers = response.results
 
+    }).catch((error) => {
+        state.isLoading = false
+        state.error = true
+        state.errorMessage = error.error
+        console.log(error)
+
+    })
+}
+
+export const getTickerLogo = async ({ state, effects }, options) => {
+    await effects.tickers.api.getTickerLogo(options).then((response) => {
+        console.log(response)
+        return response
     }).catch((error) => {
         state.isLoading = false
         state.error = true

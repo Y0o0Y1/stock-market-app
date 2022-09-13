@@ -17,6 +17,9 @@ const StatsCard = ({ tickerStats }) => {
             }}
             align={"center"}
         >
+            <Grid item xs={12}>
+                <Typography>Previous Close Stats</Typography>
+            </Grid>
             <Grid item xs={5} >
                 <Box>
                     <Typography>Open</Typography>

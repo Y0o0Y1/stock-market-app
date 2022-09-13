@@ -50,7 +50,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState("")
-    const [value] = useDebounce(searchTerm, 1500);
+    const [value] = useDebounce(searchTerm, 1000);
     const { searchForTicker } = useActions().tickers
     useEffect(() => {
         console.log(value)

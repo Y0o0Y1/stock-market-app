@@ -1,26 +1,12 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import { axios } from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 
 
 
 
 const TickerDetailsCard = ({ ticker }) => {
-    const [logo, setLogo] = useState(null)
-    useEffect(() => {
-        if (ticker?.branding) {
-            // eslint-disable-next-line no-undef
-            const apiToken = process.env.REACT_APP_POLYGON_API_TOKEN
 
-            axios.get(`${ticker.branding.logo_url}`, {
-                headers: { "Authorization": `Bearer ${apiToken}` }
-            }).then((response) => {
-                console.log(response)
-                setLogo("")
-            })
-        }
-    }, [])
     return (
         <Grid
             component={Paper}
@@ -61,7 +47,6 @@ const TickerDetailsCard = ({ ticker }) => {
                             (408) 996-1010
                         </Typography>
                     </Box>
-                    <img src={logo} width="50px" height="50px" alt="Logo" />
                 </Stack>
             </Grid>
         </Grid>

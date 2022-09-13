@@ -13,5 +13,8 @@ export const api = {
     getTickerStats(options) {
         console.log(options)
         return Api.get(`/v2/aggs/ticker/${options.ticker_id}/prev`, { params: {} })
+    },
+    getTickerLogo(options) {
+        return Api.get(options.logo_url)
     }
 }

@@ -1,4 +1,5 @@
-import { Box, Grid } from '@mui/material';
+import { Grid, IconButton, Stack, Typography } from '@mui/material';
+import { CaretLeft } from 'phosphor-react';
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import StatsCard from '../components/StatsCard';
@@ -14,25 +15,29 @@ const TickerDetails = () => {
     const navigateBack = () => {
         navigate(-1)
     }
-    useEffect(async () => {
+    const getData = async () => {
         await getTickerDetails({ ticker_id })
         await getTickerStats({ ticker_id })
+
+    }
+    useEffect(() => {
+        getData()
         return () => {
             console.log("Component Unmounted")
         }
     }, [])
 
-    // useEffect(() => {
-    //     console.log("Current", tickers?.currentTicker)
-        
-    // }, [tickers])
-
     return (
         <Grid container spacing={2} justifyContent={"space-between"}>
             <Grid item xs={12}>
-                <Box onClick={navigateBack}>
-                    Back
-                </Box>
+                <Stack direction={"row"} spacing={1} onClick={navigateBack} alignItems={"center"}>
+                    <IconButton onClick={navigateBack}>
+                        <CaretLeft size={20} />
+                    </IconButton>
+                    <Typography variant='subtitle2'>
+                        Back
+                    </Typography>
+                </Stack>
             </Grid>
             <Grid item xs={12} sm={12} md={7} lg={7}>
                 <TickerDetailsCard
