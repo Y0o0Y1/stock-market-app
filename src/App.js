@@ -15,9 +15,11 @@ import "./styles/styles.css";
 
 function App() {
   const { isLoggedIn } = useAppState()
+  const state = useAppState()
   const { onInitializeOvermind } = useActions()
   useEffect(() => {
     onInitializeOvermind()
+    console.log("overmind state", state)
   }, [])
   return (
     <div className="App">

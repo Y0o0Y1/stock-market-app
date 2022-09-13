@@ -1,3 +1,4 @@
 export const state = {
-    isLoading: false
+    isLoading: false,
+    isLoggedIn:false,
 }

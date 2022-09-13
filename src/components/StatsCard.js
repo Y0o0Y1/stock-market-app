@@ -1,7 +1,7 @@
 import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
 
-const StatsCard = ({ open, close, volume, high, low }) => {
+const StatsCard = ({ tickerStats }) => {
     return (
         <Grid
             component={Paper}
@@ -20,7 +20,7 @@ const StatsCard = ({ open, close, volume, high, low }) => {
             <Grid item xs={5} >
                 <Box>
                     <Typography>Open</Typography>
-                    <Chip label={open} size={"medium"}
+                    <Chip label={tickerStats?.o} size={"medium"}
                         sx={{
                             backgroundColor: "white",
                             border: "1px solid red",
@@ -32,7 +32,7 @@ const StatsCard = ({ open, close, volume, high, low }) => {
             <Grid item xs={5} >
                 <Box>
                     <Typography>Close</Typography>
-                    <Chip label={close} size={"medium"}
+                    <Chip label={tickerStats?.c} size={"medium"}
                         sx={{
                             backgroundColor: "white",
                             border: "1px solid green",
@@ -44,7 +44,7 @@ const StatsCard = ({ open, close, volume, high, low }) => {
             <Grid item xs={5} >
                 <Box>
                     <Typography>low</Typography>
-                    <Chip label={low} size={"medium"}
+                    <Chip label={tickerStats?.l} size={"medium"}
                         sx={{
                             backgroundColor: "white",
                             border: "1px solid green",
@@ -56,7 +56,7 @@ const StatsCard = ({ open, close, volume, high, low }) => {
             <Grid item xs={5} >
                 <Box>
                     <Typography>high</Typography>
-                    <Chip label={high} size={"medium"}
+                    <Chip label={tickerStats?.h} size={"medium"}
                         sx={{
                             backgroundColor: "white",
                             border: "1px solid red",
@@ -67,8 +67,8 @@ const StatsCard = ({ open, close, volume, high, low }) => {
             </Grid>
             <Grid item xs={5} >
                 <Box>
-                    <Typography>high</Typography>
-                    <Chip label={volume} size={"medium"}
+                    <Typography>Volume</Typography>
+                    <Chip label={tickerStats?.v} size={"medium"}
                         sx={{
                             backgroundColor: "white",
                             border: "1px solid blue",
