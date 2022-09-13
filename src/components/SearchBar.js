@@ -54,7 +54,7 @@ const SearchBar = () => {
     const { searchForTicker } = useActions().tickers
     useEffect(() => {
         console.log(value)
-        searchForTicker({ params: { ticker: value } })
+        searchForTicker({ params: { ticker: value.toUpperCase() } })
 
     }, [value])
     return (

@@ -19,7 +19,8 @@ const LoginForm = () => {
     const isLoggedin = useAppState((state) => {
         return state.user.isLoggedin
     })
-    const { removeRedirection, logIn } = useActions().user
+    const { logIn } = useActions().user
+    const { removeRedirection } = useActions()
     const loginSchema = yup.object({
         email: yup
             .string()

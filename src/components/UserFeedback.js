@@ -4,9 +4,8 @@ import { useActions, useAppState } from '../overmind';
 
 const UserFeedback = () => {
     const { isLoading, success, error, successMessage, errorMessage } = useAppState()
-    const { removeFeedbackIndicator } = useActions().user
+    const { removeFeedbackIndicator } = useActions()
     const handleClose = () => {
-        console.log("Handling Close State")
         removeFeedbackIndicator()
     }
 

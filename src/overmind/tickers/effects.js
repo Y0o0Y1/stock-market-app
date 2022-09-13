@@ -9,5 +9,8 @@ export const api = {
     },
     searchForTicker(options) {
         return Api.get(`/tickers`, { params: options.params })
+    },
+    getTickerStats(options){
+        return Api.get("/tickers",{})
     }
 }

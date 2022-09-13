@@ -1,4 +1,5 @@
 export const setLoader = (state) => {
+    console.log("Loading....")
     state.isLoading = true
 }
 
@@ -7,17 +8,21 @@ export const removeLoader = (state) => {
     state.isLoading = false
 }
 
-export const onInitializeOvermind = async ({ state }, overmind) => {
+export const onInitializeOvermind = async ({ state }) => {
     const isAuthed = localStorage.getItem('isLoggedIn');
     if (isAuthed) {
         state.isLoggedIn = true
     }
-    overmind.addMutationListener((mutation) => {
-        console.log("MUT", mutation.path)
-        if (mutation.path == "isLoggedIn") {
-            console.log("MUT2, we need to persist")
-            localStorage.setItem("isLoggedIn", JSON.stringify(true))
-            console.log("MUT", state)
-        }
-    })
+
+}
+
+export const removeRedirection = ({ state }) => {
+    state.user.redirect = false
+}
+
+export const removeFeedbackIndicator = ({ state }) => {
+    if (state.error)
+        state.error = false
+    if (state.success)
+        state.success = false
 }

@@ -1,4 +1,5 @@
-export const register = async ({ state, effects }, data) => {
+
+export const register = async ({ state, effects, }, data) => {
     const userData = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -22,15 +23,20 @@ export const register = async ({ state, effects }, data) => {
 }
 
 export const logIn = async ({ state, effects }, userData) => {
+    state.isLoading = true
     await effects.user.api.logIn(userData).then((response) => {
+        state.success = true
+        state.successMessage = "Logged In Successfully"
+        state.isLoading = false
         authenticateUser(state, response)
         console.log(response)
     }).catch((error) => {
-        console.log(error)
+        state.isLoading = false
+        state.error = true
+        state.errorMessage = error.message
+        console.log({ error: error })
     })
-    console.log({
-        message: "From Login Action",
-    })
+
 }
 const authenticateUser = (state, userData) => {
     state.user.userData = userData
@@ -42,42 +48,6 @@ const authenticateUser = (state, userData) => {
 export const logOut = async ({ state }) => {
     state.user.userData = null
     state.isLoggedIn = false
-
-
-}
-export const setError = ({ state }) => {
-    state.error = true
-}
-export const removeRedirection = ({ state }) => {
-    state.user.redirect = false
+    localStorage.removeItem('isLoggedIn');
 }
 
-export const removeFeedbackIndicator = ({ state }) => {
-    if (state.error)
-        state.error = false
-    if (state.success)
-        state.success = false
-}
-
-export const loadPosts = async ({ state, effects }, value) => {
-    console.log({ value })
-    console.log({ effects, state })
-    state.user.posts = await effects.user.api.getPosts().then((response) => {
-        console.log(response.data)
-    })
-}
-
-// export const onInitializeOvermind = async ({ state, localStorage }, overmind) => {
-//     overmind.addMutationListener((mutation) => {
-//         if (mutation.path.indexOf('user') === 0)
-//             localStorage.set('user', state.user)
-
-//     })
-// }
-
-// export const onInitializeOvermindUserBranch = async ({ state, localStorage }, overmind) => {
-//     localStorage.set("state", state.user)
-//     overmind?.addMutationListener((mutation) => {
-//         console.log("on init", mutation, state)
-//     })
-// }
