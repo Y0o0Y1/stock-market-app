@@ -28,7 +28,6 @@ const UserFeedback = () => {
             <Snackbar open={error} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: "top", horizontal: "right" }}>
                 <Alert variant="filled" onClose={handleClose} severity="error" sx={{ width: '100%', padding: "18px" }}>
                     <Typography>
-
                         {errorMessage}
                     </Typography>
                 </Alert>

@@ -13,13 +13,12 @@ export const register = async ({ state, effects, }, data) => {
             state.success = true
             state.user.redirect = true
             state.isLoading = false
-
             state.successMessage = "User Registered Successfully"
             console.log(response)
             return response
         }).catch((error) => {
             console.log({ errorStatus: error })
-            state.errorMessage = error
+            state.errorMessage = error.message
             state.error = true
             state.isLoading = false
 
