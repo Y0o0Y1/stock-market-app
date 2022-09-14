@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import TickerCard from '../components/TickerCard';
 import { useActions, useAppState } from './../overmind/index';
@@ -38,7 +39,10 @@ const Explore = () => {
             </Grid>
         }
     }
-    return (
+    return (<>
+        <Helmet>
+            <title>NASDAQ - Explore Tickers</title>
+        </Helmet>
         <Grid
             mt={2}
             container
@@ -51,6 +55,7 @@ const Explore = () => {
             {renderTickers()}
 
         </Grid >
+    </>
 
     )
 }
