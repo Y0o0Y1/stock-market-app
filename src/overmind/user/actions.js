@@ -1,5 +1,7 @@
 
 export const register = async ({ state, effects, }, data) => {
+    state.isLoading = true
+
     const userData = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -10,6 +12,8 @@ export const register = async ({ state, effects, }, data) => {
         .then((response) => {
             state.success = true
             state.user.redirect = true
+            state.isLoading = false
+
             state.successMessage = "User Registered Successfully"
             console.log(response)
             return response
@@ -17,6 +21,8 @@ export const register = async ({ state, effects, }, data) => {
             console.log({ errorStatus: error })
             state.errorMessage = error
             state.error = true
+            state.isLoading = false
+
             return error
         })
 

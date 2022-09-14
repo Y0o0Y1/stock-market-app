@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TickerCard from '../components/TickerCard';
 import { useActions, useAppState } from './../overmind/index';
+
 const Explore = () => {
     const navigate = useNavigate()
     const tickers = useAppState().tickers
@@ -11,7 +12,6 @@ const Explore = () => {
         getTickers({ params: { limit: 50 } })
         console.log("Tickkk", tickers)
     }, [])
-
     const renderTickers = () => {
         if (tickers.tickers.length > 0) {
             return tickers?.tickers?.map((ticker) => {
@@ -37,7 +37,6 @@ const Explore = () => {
             </Grid>
         }
     }
-
     return (
         <Grid
             mt={2}
