@@ -26,7 +26,7 @@ const Explore = () => {
                             navigate={navigate}
                             market={ticker.market}
                             currency_name={ticker.currency_name}
-                            last_updated_utc={"2022-02-09T06:03:09.534Z"}
+                            last_updated_utc={ticker.last_updated_utc}
                         />
                     </Box>
                 </Grid>

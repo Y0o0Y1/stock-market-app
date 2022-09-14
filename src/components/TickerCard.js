@@ -1,15 +1,20 @@
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { format, parseISO } from 'date-fns';
 import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react';
 import React, { useState } from 'react';
 
-const TickerCard = ({ ticker, name, currency_name ,navigate}) => {
+const TickerCard = ({ ticker, name, currency_name, navigate, last_updated_utc }) => {
     // const date = { last_updated_utc }
     // console.log(date)
     const [hover, setHover] = useState(false)
     const navigateToTickerDetails = () => {
         navigate(`/tickers/${ticker}`)
     }
+    const formatDate = () => {
+        return format(parseISO(last_updated_utc), "yy MMM dd hh:mm")
+    }
+    console.log()
     return (
         <Grid
             component={Paper}
@@ -71,7 +76,8 @@ const TickerCard = ({ ticker, name, currency_name ,navigate}) => {
                             fontSize: "14px",
                             color: "#adadad"
                         }}>
-                            02 FEB, 6:03
+                            {formatDate()}
+                            {/* 02 FEB, 6:03 */}
                         </Typography>
                     </Stack>
                 </Stack>
