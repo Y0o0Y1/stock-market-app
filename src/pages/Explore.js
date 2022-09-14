@@ -12,6 +12,7 @@ const Explore = () => {
         getTickers({ params: { limit: 50 } })
         console.log("Tickkk", tickers)
     }, [])
+
     const renderTickers = () => {
         if (tickers.tickers.length > 0) {
             return tickers?.tickers?.map((ticker) => {

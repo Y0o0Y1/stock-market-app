@@ -44,9 +44,11 @@ const TickerDetails = () => {
                     ticker={tickers?.currentTicker}
                 />
             </Grid>
-            <Grid item xs={12} sm={12} md={5} lg={3}>
-                <StatsCard tickerStats={tickers.currentTicker.stats} open={"1"} close={"1"} volume={"2"} high={"5"} low={"2"} />
-            </Grid>
+            {tickers.currentTicker.stats &&
+                <Grid item xs={12} sm={12} md={5} lg={3}>
+                    <StatsCard tickerStats={tickers.currentTicker.stats} open={"1"} close={"1"} volume={"2"} high={"5"} low={"2"} />
+                </Grid>
+            }
         </Grid>
     )
 }
