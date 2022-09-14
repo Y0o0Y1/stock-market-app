@@ -1,5 +1,6 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
+import StatsCard from './StatsCard';
 
 
 
@@ -11,8 +12,7 @@ const TickerDetailsCard = ({ ticker }) => {
         <Grid
             component={Paper}
             container
-            rowSpacing={1}
-
+            rowSpacing={3}
             justifyContent={"space-between"}
             alignItems={"center"}
             sx={{
@@ -33,10 +33,19 @@ const TickerDetailsCard = ({ ticker }) => {
                     <Typography variant={"subtitle1"}>{ticker?.ticker}</Typography>
                 </Stack>
             </Grid>
+            <Grid item xs={12} container justifyContent={"flex-start"} align={"left"}>
+                {ticker.stats &&
+                    <StatsCard tickerStats={ticker.stats} open={"1"} close={"1"} volume={"2"} high={"5"} low={"2"} />
+                }
+            </Grid>
+
             <Grid item xs={12}>
-                <Typography variant={"description"}>
-                    {ticker?.description}
-                </Typography>
+                <Stack spacing={0.5}>
+                    <Typography variant="subtitle2" sx={{lineHeight:"25px"}}> About</Typography>
+                    <Typography variant={"description"}>
+                        {ticker?.description}
+                    </Typography>
+                </Stack>
             </Grid>
             <Grid item xs={12}>
                 <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
@@ -44,7 +53,7 @@ const TickerDetailsCard = ({ ticker }) => {
                         <Typography variant="subtitle1">
                             {ticker?.address && ticker.address.city + ", " + ticker?.address.address1}
                             <br />
-                            (408) 996-1010
+                            {ticker?.phone_number}
                         </Typography>
                     </Box>
                 </Stack>

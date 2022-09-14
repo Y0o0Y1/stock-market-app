@@ -3,7 +3,6 @@ import { CaretLeft } from 'phosphor-react';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
-import StatsCard from '../components/StatsCard';
 import TickerDetailsCard from './../components/TickerDetailsCard';
 import { useActions, useAppState } from './../overmind/index';
 
@@ -32,9 +31,8 @@ const TickerDetails = () => {
         <Helmet>
             <title>NASDAQ - {ticker_id}</title>
         </Helmet>
-
         <Grid container spacing={2} justifyContent={"space-between"}>
-            <Grid item xs={12}>
+            <Grid item xs={12} mb={2}>
                 <Stack direction={"row"} spacing={1} onClick={navigateBack} alignItems={"center"}>
                     <IconButton onClick={navigateBack}>
                         <CaretLeft size={20} />
@@ -49,11 +47,7 @@ const TickerDetails = () => {
                     ticker={tickers?.currentTicker}
                 />
             </Grid>
-            {tickers.currentTicker.stats &&
-                <Grid item xs={12} sm={12} md={5} lg={3}>
-                    <StatsCard tickerStats={tickers.currentTicker.stats} open={"1"} close={"1"} volume={"2"} high={"5"} low={"2"} />
-                </Grid>
-            }
+
         </Grid>
     </>
     )
