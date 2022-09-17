@@ -4,13 +4,8 @@ import { format, parseISO } from 'date-fns';
 import { ClockClockwise, CurrencyCircleDollar } from 'phosphor-react';
 import React, { useState } from 'react';
 
-const TickerCard = ({ ticker, name, currency_name, navigate, last_updated_utc }) => {
-    // const date = { last_updated_utc }
-    // console.log(date)
+const TickerCard = ({ ticker, name, currency_name, last_updated_utc }) => {
     const [hover, setHover] = useState(false)
-    const navigateToTickerDetails = () => {
-        navigate(`/tickers/${ticker}`)
-    }
     const formatDate = () => {
         return format(parseISO(last_updated_utc), "yy MMM dd hh:mm")
     }
@@ -31,6 +26,7 @@ const TickerCard = ({ ticker, name, currency_name, navigate, last_updated_utc })
                 height: "auto",
                 alignItems: "center",
                 border: "1px solid rgba(0, 0, 0, 0.1)",
+                borderRadius: "16px",
                 cursor: "pointer",
                 boxShadow: `${hover && "0px 0px 12px 0px rgba(0, 0, 0, 0.12)"}`,
                 transform: `${hover && "scale(1.130)"}`,
@@ -38,7 +34,7 @@ const TickerCard = ({ ticker, name, currency_name, navigate, last_updated_utc })
             }}
             onMouseOver={() => setHover(true)}
             onMouseOut={() => setHover(false)}
-            onClick={navigateToTickerDetails}
+        // onClick={openDrawer}
         >
             <Grid item xs={12}>
                 <Stack direction={"column"} justifyContent={"space-between"} alignItems={"flex-start"} spacing={0.2}>

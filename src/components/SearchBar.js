@@ -2,6 +2,7 @@ import { InputBase } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { MagnifyingGlass } from 'phosphor-react';
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 import { useActions } from './../overmind/index';
 
@@ -49,14 +50,23 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 const SearchBar = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    // const { currentTicker } = useAppState().tickers
     const [searchTerm, setSearchTerm] = useState("")
     const [value] = useDebounce(searchTerm, 1000);
     const { searchForTicker } = useActions().tickers
     useEffect(() => {
+        if (location.pathname !== "/explore")
+            navigate("/explore")
         console.log(value)
         searchForTicker({ params: { ticker: value.toUpperCase() } })
 
     }, [value])
+
+    // useEffect(() => {
+    //     console.log({ location })
+    // }, [currentTicker])
     return (
         <Search>
             <SearchIconWrapper>

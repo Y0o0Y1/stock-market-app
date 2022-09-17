@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, ClickAwayListener, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
@@ -12,9 +12,12 @@ const Explore = () => {
     const { isLoading } = useAppState()
     const [drawerOpenState, setDrawerOpenState] = useState(false)
     const tickers = useAppState().tickers
-    const { getTickers } = useActions().tickers
-    const openDetailsDrawer = () => {
+    const { getTickers, getTickerDetails } = useActions().tickers
+    const openDetailsDrawer = (ticker) => {
+        console.log(ticker)
+        getTickerDetails({ ticker_id: ticker })
         setDrawerOpenState(true)
+
     }
     useEffect(() => {
         getTickers({ params: { limit: 50 } })
@@ -24,7 +27,7 @@ const Explore = () => {
         if (tickers.tickers.length > 0) {
             return tickers?.tickers?.map((ticker) => {
                 return <Grid item xs={true} sm={true} md={true} lg={true} xl={true} key={Math.random()} sx={{ alignSelf: "center" }}>
-                    <Box onClick={openDetailsDrawer}>
+                    <Box onClick={() => openDetailsDrawer(ticker.ticker)}>
                         <TickerCard
                             ticker={ticker.ticker}
                             name={ticker.name}
@@ -58,8 +61,14 @@ const Explore = () => {
             padding={3}
         >
             {renderTickers()}
-        </Grid >
-        <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
+        </Grid>
+        <ClickAwayListener onClickAway={() => {
+
+            setDrawerOpenState(false)
+        }}>
+
+            <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
+        </ClickAwayListener>
     </>
 
     )
