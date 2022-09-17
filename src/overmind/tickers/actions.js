@@ -16,6 +16,7 @@ export const getTickers = async ({ state, effects }, options) => {
 export const getTickerDetails = async ({ state, effects }, options) => {
     state.isLoading = true
     await effects.tickers.api.getTicker(options).then((response) => {
+        state.isLoading = false
         state.tickers.currentTicker = response.results
         console.log(response)
     }).catch((error) => {
@@ -45,17 +46,12 @@ export const searchForTicker = async ({ state, effects }, options) => {
     await effects.tickers.api.searchForTicker(options).then((response) => {
         console.log(response)
         state.isLoading = false
-        if (window.location.pathname !== "/explore") {
-            window.location.replace("/explore")
-        }
         state.tickers.tickers = response.results
-
     }).catch((error) => {
         state.isLoading = false
         state.error = true
         state.errorMessage = error.error
         console.log(error)
-
     })
 }
 

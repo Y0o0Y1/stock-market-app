@@ -1,18 +1,18 @@
-import Explore from './../pages/Explore';
-import Login from './../pages/Login';
-import Page403 from './../pages/Page403';
-import Page404 from './../pages/Page404';
-import SignUp from './../pages/SignUp';
-import TickerDetails from './../pages/TickerDetails';
-//Login Screen Route
-//Explore Screen Route
-//Company Details Screen Route
-//Sign Up Screen Route
+import React from 'react';
+
+
+const Explore = React.lazy(() => import('./../pages/Explore'));
+const Login = React.lazy(() => import('./../pages/Login'));
+const SignUp = React.lazy(() => import('./../pages/SignUp'));
+const TickerDetails = React.lazy(() => import('./../pages/TickerDetails'));
+
+
 
 
 export const pages = [
     {
         name: "Explore",
+        parent: "/",
         path: "/explore",
         element: <Explore />,
         permission: true,
@@ -20,7 +20,8 @@ export const pages = [
     },
     {
         name: "Ticker Details",
-        path: "/tickers/:ticker_id",
+        parent: "/",
+        path: "tickers/:ticker_id",
         element: <TickerDetails />,
         permission: true,
         id: "2"
@@ -34,23 +35,9 @@ export const pages = [
     },
     {
         name: "Sign Up",
-        path: "/sign-up",
+        path: "sign-up",
         element: <SignUp />,
         permission: false,
         id: "4"
     },
-    {
-        name: "Not Found",
-        path: "*",
-        element: <Page404 />,
-        permission: false,
-        id: "5"
-    },
-    {
-        name: "Not Authorized",
-        path: "/403",
-        element: <Page403 />,
-        permission: false,
-        id: "6"
-    }
 ]

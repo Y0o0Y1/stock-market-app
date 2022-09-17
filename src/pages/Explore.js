@@ -1,24 +1,30 @@
 import { Box, Grid, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import TickerCard from '../components/TickerCard';
+import TickerDetailsDrawer from '../components/TickerDetailsDrawer';
 import { useActions, useAppState } from './../overmind/index';
 
 const Explore = () => {
     const navigate = useNavigate()
+
+    const { isLoading } = useAppState()
+    const [drawerOpenState, setDrawerOpenState] = useState(false)
     const tickers = useAppState().tickers
     const { getTickers } = useActions().tickers
+    const openDetailsDrawer = () => {
+        setDrawerOpenState(true)
+    }
     useEffect(() => {
         getTickers({ params: { limit: 50 } })
-        console.log("Tickkk", tickers)
     }, [])
 
     const renderTickers = () => {
         if (tickers.tickers.length > 0) {
             return tickers?.tickers?.map((ticker) => {
                 return <Grid item xs={true} sm={true} md={true} lg={true} xl={true} key={Math.random()} sx={{ alignSelf: "center" }}>
-                    <Box>
+                    <Box onClick={openDetailsDrawer}>
                         <TickerCard
                             ticker={ticker.ticker}
                             name={ticker.name}
@@ -33,10 +39,9 @@ const Explore = () => {
             })
         }
         else {
-            return <Grid item>
+            return !isLoading && <Grid item>
                 <Typography>There must be an error due to api limitations</Typography>
-
-            </Grid>
+            </Grid >
         }
     }
     return (<>
@@ -53,8 +58,8 @@ const Explore = () => {
             padding={3}
         >
             {renderTickers()}
-
         </Grid >
+        <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
     </>
 
     )
