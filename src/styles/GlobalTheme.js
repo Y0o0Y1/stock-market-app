@@ -39,6 +39,16 @@ export const ThemeObject = {
                     },
                 },
                 {
+                    props: { variant: 'title2' },
+                    style: {
+                        color: "#000000",
+                        fontFamily: "Urbanist,sans-serif",
+                        fontSize: "24px",
+                        lineHeight: "35px",
+                        fontWeight: "550"
+                    },
+                },
+                {
                     props: { variant: 'subtitle1' },
                     style: {
                         color: "#ADADAD",

@@ -12,11 +12,14 @@ const Explore = () => {
     const { isLoading } = useAppState()
     const [drawerOpenState, setDrawerOpenState] = useState(false)
     const tickers = useAppState().tickers
-    const { getTickers, getTickerDetails } = useActions().tickers
-    const openDetailsDrawer = (ticker) => {
-        console.log(ticker)
-        getTickerDetails({ ticker_id: ticker })
+    const { getTickers, getTickerDetails, getTickerStats } = useActions().tickers
+    const openDetailsDrawer = async (ticker) => {
+        await getData(ticker).then((response) => console.log(response))
         setDrawerOpenState(true)
+    }
+    const getData = async (ticker_id) => {
+        await getTickerDetails({ ticker_id })
+        await getTickerStats({ ticker_id })
 
     }
     useEffect(() => {
