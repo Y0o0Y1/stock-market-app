@@ -1,4 +1,4 @@
-import { Box, ClickAwayListener, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
@@ -62,13 +62,7 @@ const Explore = () => {
         >
             {renderTickers()}
         </Grid>
-        <ClickAwayListener onClickAway={() => {
-
-            setDrawerOpenState(false)
-        }}>
-
-            <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
-        </ClickAwayListener>
+        <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
     </>
 
     )
