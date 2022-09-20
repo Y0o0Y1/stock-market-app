@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Routes } from 'react-router-dom';
 import './App.css';
 import UserFeedback from './components/UserFeedback';
-import { useAppState } from './overmind';
 import { useActions } from './overmind/index';
 import renderRoutes from './routes/utils';
 import "./styles/styles.css";
@@ -13,11 +12,9 @@ import "./styles/styles.css";
 
 
 function App() {
-  const state = useAppState()
   const { onInitializeOvermind } = useActions()
   useEffect(() => {
     onInitializeOvermind()
-    console.log("overmind state", state)
   }, [])
   return (
     <div className="App">

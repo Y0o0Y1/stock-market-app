@@ -8,7 +8,6 @@ export const getTickers = async ({ state, effects }, options) => {
         state.isLoading = false
         state.errorMessage = error.error
         console.log(error)
-        console.log(error)
     })
 
 }
@@ -24,7 +23,6 @@ export const getTickerDetails = async ({ state, effects }, options) => {
         state.isLoading = false
         console.log(error)
         state.errorMessage = error.error
-        console.log(error)
     })
 }
 

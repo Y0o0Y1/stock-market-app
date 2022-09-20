@@ -13,6 +13,7 @@ const Explore = () => {
     const tickers = useAppState().tickers
     const { getTickers, getTickerDetails, getTickerStats } = useActions().tickers
     const openDetailsDrawer = async (ticker) => {
+        console.log(ticker, tickers.currentTicker)
         await getData(ticker).then((response) => console.log(response))
         setDrawerOpenState(true)
     }
