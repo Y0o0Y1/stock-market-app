@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, ClickAwayListener, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
@@ -21,10 +21,10 @@ const Explore = () => {
         await getTickerStats({ ticker_id })
 
     }
-    useEffect(() => {
-        getTickers({ params: { limit: 50 } })
-    }, [])
-
+    const closeDrawer = () => {
+        console.log("closing")
+        setDrawerOpenState(false)
+    }
     const renderTickers = () => {
         if (tickers.tickers.length > 0) {
             return tickers?.tickers?.map((ticker) => {
@@ -49,23 +49,29 @@ const Explore = () => {
             </Grid >
         }
     }
-    return (<>
-        <Helmet>
-            <title>NASDAQ - Explore Tickers</title>
-        </Helmet>
-        <Grid
-            mt={2}
-            container
-            direction={"row"}
-            rowSpacing={2}
-            columnSpacing={3}
-            justifyContent={tickers?.tickers / 12 == 1 ? "center" : "flex-start"}
-            padding={3}
-        >
-            {renderTickers()}
-        </Grid>
-        <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
-    </>
+    useEffect(() => {
+        getTickers({ params: { limit: 50 } })
+    }, [])
+    return (
+        <>
+            <Helmet>
+                <title>NASDAQ - Explore Tickers</title>
+            </Helmet>
+            <ClickAwayListener onClickAway={closeDrawer}>
+                <Grid
+                    mt={2}
+                    container
+                    direction={"row"}
+                    rowSpacing={2}
+                    columnSpacing={3}
+                    justifyContent={tickers?.tickers / 12 == 1 ? "center" : "flex-start"}
+                    padding={3}
+                >
+                    {renderTickers()}
+                </Grid>
+            </ClickAwayListener>
+            <TickerDetailsDrawer open={drawerOpenState} setOpenState={setDrawerOpenState} />
+        </>
 
     )
 }

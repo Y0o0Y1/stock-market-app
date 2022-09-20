@@ -8,6 +8,7 @@ const TickerDetailsDrawer = ({ open, setOpenState }) => {
     const closeDrawer = () => {
         setOpenState(false)
     }
+
     console.log(ticker?.stats)
     return (
         <Drawer
@@ -52,8 +53,7 @@ const TickerDetailsDrawer = ({ open, setOpenState }) => {
                         </Stack>
                     </Grid>
                     <Grid item xs={12} >
-                        <Typography variant="subtitle1">About</Typography>
-                        <Typography variant="h6" sx={{ maxWidth: "25vw" }}>
+                        <Typography sx={{ maxWidth: "25vw" }}>
                             {ticker?.description}
                         </Typography>
                     </Grid>
