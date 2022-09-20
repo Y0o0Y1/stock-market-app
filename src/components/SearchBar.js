@@ -60,7 +60,11 @@ const SearchBar = () => {
         if (location.pathname !== "/explore")
             navigate("/explore")
         console.log(value)
-        searchForTicker({ params: { ticker: value.toUpperCase() } })
+        if (value)
+            searchForTicker({ params: { ticker: value.toUpperCase() } }).then((res) => {
+                console.log(res)
+                setSearchTerm("")
+            })
 
     }, [value])
 
@@ -74,6 +78,7 @@ const SearchBar = () => {
             </SearchIconWrapper>
             <StyledInputBase
                 placeholder="Search…"
+                value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value) }}
                 inputProps={{ 'aria-label': 'search' }}
             />

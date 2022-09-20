@@ -19,6 +19,7 @@ export const getTickerDetails = async ({ state, effects }, options) => {
         state.isLoading = false
         state.tickers.currentTicker = response.results
         console.log(response)
+        return response
     }).catch((error) => {
         state.isLoading = false
         console.log(error)
@@ -47,6 +48,7 @@ export const searchForTicker = async ({ state, effects }, options) => {
         console.log(response)
         state.isLoading = false
         state.tickers.tickers = response.results
+        return response
     }).catch((error) => {
         state.isLoading = false
         state.error = true

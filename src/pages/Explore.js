@@ -8,7 +8,6 @@ import { useActions, useAppState } from './../overmind/index';
 
 const Explore = () => {
     const navigate = useNavigate()
-
     const { isLoading } = useAppState()
     const [drawerOpenState, setDrawerOpenState] = useState(false)
     const tickers = useAppState().tickers
